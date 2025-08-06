@@ -3,11 +3,13 @@ import icons from 'url:../../img/icons.svg'; // Parcel 2
 class RecipeView {
   _parentElement = document.querySelector('.recipe');
   _data;
+  #errrorMessage = 'We could not find that recipe. Please try another one!';
+  #message = 'Start by searching for a recipe or an ingredient. Have fun!';
 
   render(data) {
     this._data = data;
     const markup = this._generateMarkup();
-    // this.#clear();
+    this.#clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
   #clear() {
@@ -19,10 +21,10 @@ class RecipeView {
       <use href="${icons}#icon-loader"></use>
     </svg>
     </div>`;
-    this._parentElement.innerHTML = '';
+    this.#clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   };
-  renderError(message) {
+  renderError(message = this.#errrorMessage) {
     const markup = `<div class="error">
       <div>
         <svg>
@@ -31,7 +33,19 @@ class RecipeView {
       </div>
       <p>${message}</p>
     </div>`;
-    this._clear();
+    this.#clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+  renderMessage(message = this.#message) {
+    const markup = `<div class="message">
+      <div>
+        <svg>
+          <use href="${icons}#icon-smile"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>`;
+    this.#clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
   addHandlerRender(handler) {
