@@ -4,4 +4,4 @@ dist
 .parcel-cache
 .parcel-cache/
 
-package-lock.json
+package-lock.json.parcel-cache/
