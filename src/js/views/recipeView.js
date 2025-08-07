@@ -7,6 +7,21 @@ class RecipeView extends View {
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
+  // pub/sub pattern
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings');
+      if (!btn) return;
+
+      // from here we control the serving number as in the html code below we increase/decrease it by 1 in (data-update-to) attribute
+      const { update } = btn.dataset; // notice the camelCase
+
+      // note : if you used (+) in the line above to convert it to number it will yield an error as you are trying to convert an (object to a number)
+
+      // (+) to convert to number here
+      if (+update > 0) handler(+update);
+    });
+  }
   _generateMarkupIngredient(ing) {
     return `
       <li class="recipe__ingredient">
