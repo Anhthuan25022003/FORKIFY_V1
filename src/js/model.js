@@ -1,11 +1,13 @@
 import { async } from 'regenerator-runtime';
-import { API_URL, KEY } from './config.js';
+import { API_URL, KEY, RES_PER_PAGE } from './config.js';
 import { getJSON } from './helpers.js';
 export const state = {
   recipe: {},
   search: {
+    page: 1, // Current page of the search results
     query: '',
     results: [],
+    resultsPerPage: RES_PER_PAGE, // Number of results per page
   },
 };
 
