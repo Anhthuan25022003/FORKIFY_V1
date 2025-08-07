@@ -56,6 +56,7 @@ const controllerPagination = function (goToPage) {
   // 2) Render New pagination buttons
   paginationView.render(model.state.search);
 };
+
 const controllerServings = function (newServings) {
   // Update recipe servings
   console.log('model.updateServings exists?', model.updateServings);
@@ -65,6 +66,7 @@ const controllerServings = function (newServings) {
   // Update recipe view
   recipeView.update(model.state.recipe);
 };
+
 
 const init = function () {
   recipeView.addHandlerRender(controllerRecipes);
